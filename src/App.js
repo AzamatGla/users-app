@@ -1,10 +1,14 @@
 import React from 'react';
+import {Home} from './components/Home';
+import {GlobalProvider} from './context/GlobalState';
 
 function App() {
   return (
-    <div className="App">
-        <h1>It works</h1>
-    </div>
+    <GlobalProvider>
+        <div className="container w-25 mt-5">
+          <Home />
+        </div>
+    </GlobalProvider>
   );
 }
 
