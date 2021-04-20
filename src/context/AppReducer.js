@@ -1,14 +1,23 @@
 import React from 'react';
-import {v4 as uuidv4} from 'uuid';
 
 export const AppReducer = (state, action) => {
-    console.log('here');
-    console.log(action);
-    console.log(state)
     switch(action.type) {
         case "ADD_USER":
             return {
                 ...state, users: [...state.users, action.payload]
+            };
+        case "DELETE_USER":
+            return {
+                ...state, users: state.users.filter(item => item.id !== action.payload)
+            };
+        case "EDIT_USER":
+            return {
+                ...state, users: state.users.map(item => {
+                    if (item.id === action.payload.id) {
+                        item.name = action.payload.name;
+                    }
+                    return item;
+                })
             }
         default: return state;
     }
